@@ -1,0 +1,15 @@
+{
+  "name": "compressions",
+  "version": "1.0.0",
+  "description": "package to work with file compressions, decompressions, and file format / compression checks",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Ganesh K Bhat",
+  "license": "MIT"
+}

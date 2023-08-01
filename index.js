@@ -2,7 +2,7 @@
  *
  */
 
-module.exports = {
+module.exports.compressions = {
   ...require("./src/index.js")
 }
 

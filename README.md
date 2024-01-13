@@ -4,6 +4,8 @@
 
 Demos can be viewed in the [demos folder](./demos) -->
 
+<!-- compresses -->
+
 ### DO NOT USE
 ### First commit usage will be after version 1.0.0
 ### In Development

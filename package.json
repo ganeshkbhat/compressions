@@ -1,6 +1,6 @@
 {
   "name": "compressions",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "package to work with file compressions, decompressions, and file format / compression checks",
   "main": "index.js",
   "directories": {

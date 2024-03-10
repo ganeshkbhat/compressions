@@ -16,6 +16,10 @@
 
 'use strict';
 
+import { Archive, ArchiveCompression, ArchiveFormat } from "libarchivejs/dist/libarchive-node.mjs";
+
+// import {Archive} from 'libarchive.js/main.js'; // browser version
+
 /**
  * isBrowser
  *
@@ -30,9 +34,11 @@ function isBrowser() {
 }
 
 let path;
+let readFile;
 
 if (!isBrowser()) {
 	path = require('path');
+	readFile = require('node:fs/promises').readFile;
 } else {
 	path = require('path');
 }
@@ -104,12 +110,89 @@ function verifycompressed() {
 
 }
 
-function compress() {
+async function compressNode() {
 
+	Archive.init({
+		workerUrl: 'libarchive.js/dist/worker-bundle.js'
+	});
+
+	const archive = await Archive.open(file);
+
+	await archive.usePassword(pass);
+
+	let obj = await archive.extractFiles(cb);
+	// // outputs
+	// {
+	// 	".gitignore": { File },
+	// 	"addon": {
+	// 		"addon.py": { File },
+	// 		"addon.xml": { File }
+	// 	},
+	// 	"README.md": { File }
+	// }
+	await archive.getFilesObject();
+	// // outputs
+	// {
+	//     ".gitignore": {CompressedFile},
+	//     "addon": {
+	//         "addon.py": {CompressedFile},
+	//         "addon.xml": {CompressedFile}
+	//     },
+	//     "README.md": {CompressedFile}
+	// }
+
+	await archive.getFilesArray();
+	// // outputs
+	// [
+	//     {file: {CompressedFile}, path: ""},
+	//     {file: {CompressedFile},   path: "addon/"},
+	//     {file: {CompressedFile},  path: "addon/"},
+	//     {file: {CompressedFile},  path: ""}
+	// ]
 }
 
-function decompress() {
+async function decompressNode(filename, pass, cb) {
 
+	Archive.init({
+		workerUrl: 'libarchive.js/dist/worker-bundle.js'
+	});
+	const archive = await Archive.open(file);
+	let isencrypted = await archive.hasEncryptedData();
+	// true - yes
+	// false - no
+	// null - can not be determined
+
+	await archive.usePassword(pass);
+
+	let obj = await archive.extractFiles(cb);
+	// // outputs
+	// {
+	// 	".gitignore": { File },
+	// 	"addon": {
+	// 		"addon.py": { File },
+	// 		"addon.xml": { File }
+	// 	},
+	// 	"README.md": { File }
+	// }
+	await archive.getFilesObject();
+	// // outputs
+	// {
+	//     ".gitignore": {CompressedFile},
+	//     "addon": {
+	//         "addon.py": {CompressedFile},
+	//         "addon.xml": {CompressedFile}
+	//     },
+	//     "README.md": {CompressedFile}
+	// }
+
+	await archive.getFilesArray();
+	// // outputs
+	// [
+	//     {file: {CompressedFile}, path: ""},
+	//     {file: {CompressedFile},   path: "addon/"},
+	//     {file: {CompressedFile},  path: "addon/"},
+	//     {file: {CompressedFile},  path: ""}
+	// ]
 }
 
 

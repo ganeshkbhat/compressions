@@ -3,12 +3,37 @@
   "version": "0.0.1",
   "description": "package to work with file compressions, decompressions, and file format / compression checks",
   "main": "index.js",
+  "exports": {
+    "require": "./index.js",
+    "import": "./index.mjs"
+  },
+  "unpkg": "index.min.js",
   "directories": {
-    "test": "tests"
+    "test": "test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganeshkbhat/which-.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ganeshkbhat/which-/issues"
+  },
+  "homepage": "https://github.com/ganeshkbhat/which-#readme",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --reporter spec --recursive --timeout 60000",
+    "uglify": "uglifyjs --compress --mangle reserved=['$','require','exports'] index.js -o index.min.js",
+    "gitadd": "git add .",
+    "build": "tsc"
   },
+  "pre-commit": {
+    "run": [
+      "uglify",
+      "gitadd",
+      "test"
+    ]
+  },
+  "author": "Ganesh <ganeshsurfs@gmail.com>",
+  "license": "MIT",
   "keywords": [
     "compress",
     "compression",
@@ -66,23 +91,32 @@
     "zipx",
     "zoo",
     "zpaq",
-    "zst"
+    "zst",
+    "@cowasm/bzip2",
+    "@cowasm/lzma",
+    "@cowasm/tar",
+    "@cowasm/zlib",
+    "@magnetardev/archive",
+    "@npmcli/run-script",
+    "libarchive-wasm",
+    "libarchive.js"
   ],
-  "author": "Ganesh K Bhat",
-  "license": "MIT",
   "dependencies": {
-    "@cowasm/bzip2": "^1.0.1",
-    "@cowasm/lzma": "^1.0.3",
-    "@cowasm/tar": "^1.0.1",
-    "@cowasm/zlib": "^1.0.0",
-    "@magnetardev/archive": "^1.0.5",
-    "@npmcli/run-script": "^7.0.3",
-    "libarchive-wasm": "^1.1.0",
-    "libarchive.js": "^1.3.0"
+    "libarchive-wasm": "^1.1.0"
   },
   "devDependencies": {
-    "chai": "^5.0.0",
+    "@types/chai": "^4.3.11",
+    "@types/eslint": "^8.56.2",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.16",
+    "chai": "^4.4.1",
+    "live-server": "^1.2.2",
     "mocha": "^10.2.0",
-    "sinon": "^17.0.1"
+    "pre-commit": "^1.2.2",
+    "pre-push": "^0.1.4",
+    "sinon": "^17.0.1",
+    "typescript": "^5.3.3",
+    "uglify-js": "^3.17.4",
+    "unimported": "^1.31.1"
   }
 }

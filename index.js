@@ -16,10 +16,119 @@
 
 'use strict';
 
-module.exports.compressions = {
-  ...require("./src/index.js")
+/**
+ * isBrowser
+ *
+ * @return {*} 
+ */
+function isBrowser() {
+	if (typeof process === "object" && typeof require === "function") {
+		return false;
+	}
+	if (typeof importScripts === "function") { return false; }
+	if (typeof window === "object") { return true; }
 }
 
-module.exports.default = {
-  ...require("./src/index.js")
+let path;
+
+if (!isBrowser()) {
+	path = require('path');
+} else {
+	path = require('path');
 }
+
+const compressed = [
+	"7z",
+	"aar",
+	"ace",
+	"arj",
+	"apk",
+	"arc",
+	"ark",
+	"br",
+	"bz",
+	"bz2",
+	"cab",
+	"chm",
+	"deb",
+	"dmg",
+	"ear",
+	"egg",
+	"epub",
+	"gz",
+	"jar",
+	"lha",
+	"lrz",
+	"lz",
+	"lz4",
+	"lzh",
+	"lzma",
+	"lzo",
+	"lzop",
+	"mar",
+	"par2",
+	"pea",
+	"pet",
+	"pkg",
+	"rar",
+	"rpm",
+	"rz",
+	"s7z",
+	"shar",
+	"sit",
+	"sitx",
+	"tbz",
+	"tbz2",
+	"tgz",
+	"tlz",
+	"txz",
+	"tzo",
+	"war",
+	"whl",
+	"xpi",
+	"xz",
+	"z",
+	"zip",
+	"zipx",
+	"zoo",
+	"zpaq",
+	"zst"
+]
+
+const extensions = new Set(compressed);
+const iscompressed = filePath => extensions.has(path.extname(filePath).slice(1).toLowerCase());
+const setExtension = ext => extensions.push(ext);
+const getExtension = (ext) => extensions.get(ext);
+
+function verifycompressed() {
+
+}
+
+function compress() {
+
+}
+
+function decompress() {
+
+}
+
+
+if (!isBrowser()) {
+
+	module.exports.iscompressed = iscompressed;
+	module.exports.verifycompressed = verifycompressed;
+	module.exports.compress = compress;
+	module.exports.decompress = decompress;
+	module.exports.setExtension = setExtension;
+	module.exports.getExtension = getExtension;
+	module.exports.default = {
+		verifycompressed,
+		iscompressed,
+		compress,
+		decompress,
+		setExtension,
+		getExtension
+	};
+
+}
+

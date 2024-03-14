@@ -197,20 +197,22 @@ async function decompressNode(filename, pass, cb) {
 
 if (!isBrowser()) {
 
+	module.exports.compressed = compressed;
 	module.exports.iscompressed = iscompressed;
 	module.exports.verifycompressed = verifycompressed;
-	module.exports.compress = compressNode;
-	module.exports.decompress = decompressNode;
+	module.exports.compressNode = compressNode;
+	module.exports.decompressNode = decompressNode;
 	module.exports.setExtension = setExtension;
 	module.exports.getExtension = getExtension;
 	module.exports.zip = require("./exec.unzip").zip;
 	module.exports.unzip = require("./exec.unzip").unzip;
 
 	module.exports.default = {
+		compressed,
 		verifycompressed,
 		iscompressed,
-		compress,
-		decompress,
+		compressNode,
+		decompressNode,
 		setExtension,
 		getExtension
 	};

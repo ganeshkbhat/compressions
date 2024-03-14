@@ -102,6 +102,9 @@
     "libarchive.js"
   ],
   "dependencies": {
+    "@magnetardev/archive": "^1.0.5",
+    "cross-zip": "^4.0.1",
+    "jszip": "^3.10.1",
     "libarchive.js": "^2.0.2"
   },
   "devDependencies": {

@@ -1,14 +1,13 @@
 /**
  * 
- * Package: 
+ * Package: compresses
  * Author: Ganesh B
  * Description: 
- * Install: npm i  --save
- * Github: https://github.com/ganeshkbhat//
- * npmjs Link: https://www.npmjs.com/package//
- * File: index.js
+ * Install: npm i compresses --save
+ * Github: https://github.com/ganeshkbhat/compresses
+ * npmjs Link: https://www.npmjs.com/package/compresses
+ * File: 
  * File Description: 
- * 
  * 
 */
 
@@ -200,10 +199,13 @@ if (!isBrowser()) {
 
 	module.exports.iscompressed = iscompressed;
 	module.exports.verifycompressed = verifycompressed;
-	module.exports.compress = compress;
-	module.exports.decompress = decompress;
+	module.exports.compress = compressNode;
+	module.exports.decompress = decompressNode;
 	module.exports.setExtension = setExtension;
 	module.exports.getExtension = getExtension;
+	module.exports.zip = require("./exec.unzip").zip;
+	module.exports.unzip = require("./exec.unzip").unzip;
+
 	module.exports.default = {
 		verifycompressed,
 		iscompressed,

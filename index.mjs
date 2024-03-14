@@ -1,14 +1,13 @@
 /**
  * 
- * Package: 
+ * Package: compresses
  * Author: Ganesh B
  * Description: 
- * Install: npm i  --save
- * Github: https://github.com/ganeshkbhat//
- * npmjs Link: https://www.npmjs.com/package//
- * File: index.js
+ * Install: npm i compresses --save
+ * Github: https://github.com/ganeshkbhat/compresses
+ * npmjs Link: https://www.npmjs.com/package/compresses
+ * File: 
  * File Description: 
- * 
  * 
 */
 
